@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔥 バズタイトルクッカー Pro - 14万人が認めた最強YouTube戦略ツール</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --container-bg: rgba(255, 255, 255, 0.03);
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-color: #f1f1f1;
+            --primary-gradient: linear-gradient(135deg, #FF3D00 0%, #FF8F00 100%);
+            --accent-color: #2979FF;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --btn-bg: #2ba640;
+            --btn-hover: #32c44c;
+            --warning-color: #FFAB40;
+            --glass-blur: blur(12px);
+        }
+
+        body {
+            font-family: 'Outfit', 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-color);
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(255, 61, 0, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(41, 121, 255, 0.05) 0%, transparent 40%);
+            color: var(--text-color);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            background: var(--container-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        p.subtitle {
+            text-align: center;
+            font-size: 1em;
+            color: #999;
+            margin-bottom: 40px;
+        }
+
+        .input-group {
+            margin-bottom: 24px;
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .input-group:focus-within {
+            border-color: #FF3D00;
+            transform: translateY(-2px);
+        }
+
+        .flex-row {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .flex-half {
+            flex: 1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 700;
+            color: #ccc;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: all 0.2s;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            background-color: rgba(0, 0, 0, 0.5);
+            border-color: #FF3D00;
+            box-shadow: 0 0 0 4px rgba(255, 61, 0, 0.1);
+        }
+
+        .buzzword-palette {
+            margin-top: 15px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .buzzword-tag {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 6px 12px;
+            border-radius: 100px;
+            font-size: 0.8em;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+            color: #bbb;
+        }
+
+        .buzzword-tag:hover {
+            background: rgba(255, 61, 0, 0.2);
+            color: white;
+            border-color: rgba(255, 61, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        .hint {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        button.generate-btn {
+            width: 100%;
+            padding: 20px;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 10px 20px rgba(255, 61, 0, 0.2);
+        }
+
+        button.generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(255, 61, 0, 0.3);
+            filter: brightness(1.1);
+        }
+
+        button.generate-btn:active {
+            transform: scale(0.98);
+        }
+
+        .results-area {
+            margin-top: 40px;
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .category-block {
+            margin-bottom: 30px;
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .category-title {
+            margin-top: 0;
+            margin-bottom: 16px;
+            font-size: 1.25em;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 700;
+        }
+
+        .result-count {
+            font-size: 0.7em;
+            color: #777;
+            font-weight: 400;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .title-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s;
+        }
+
+        .title-item:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.03);
+            transform: translateX(5px);
+        }
+
+        .title-content {
+            flex-grow: 1;
+            padding-right: 20px;
+        }
+
+        .title-text {
+            font-size: 1.1em;
+            line-height: 1.5;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .title-meta {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .char-count {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            font-weight: 700;
+        }
+
+        .char-count.warning {
+            color: var(--warning-color);
+            background: rgba(255, 171, 64, 0.1);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .copy-btn,
+        .preview-btn {
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 700;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+
+        .preview-btn {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ccc;
+        }
+
+        .preview-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        .copy-btn {
+            background: var(--btn-bg);
+        }
+
+        .copy-btn:hover {
+            background: var(--btn-hover);
+            transform: scale(1.05);
+        }
+
+        .copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        .copy-btn.copied {
+            background: var(--accent-color);
+        }
+
+        /* Modal / Mobile Preview */
+        .preview-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            animation: fadeIn 0.3s;
+        }
+
+        .mobile-mockup {
+            width: 320px;
+            background: #0f0f0f;
+            border-radius: 36px;
+            padding: 12px;
+            border: 8px solid #333;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+            position: relative;
+        }
+
+        .mock-video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #222;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #444;
+            font-size: 2em;
+        }
+
+        .mock-info {
+            padding: 0 10px;
+        }
+
+        .mock-title {
+            color: white;
+            font-size: 16px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            /* YouTube mobile usually cuts at 2 lines */
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .mock-meta {
+            color: #aaa;
+            font-size: 12px;
+        }
+
+        .close-preview {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #fff;
+            color: #000;
+            padding: 16px 32px;
+            border-radius: 40px;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+            z-index: 3000;
+            transform: translate(-50%, 20px) scale(0.9);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translate(-50%, 0) scale(1);
+        }
+
+        .premium-badge {
+            display: inline-block;
+            background: var(--primary-gradient);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.5em;
+            vertical-align: middle;
+            margin-left: 10px;
+            color: white;
+            -webkit-text-fill-color: white;
+            /* Undo clip text */
+            font-weight: 700;
+            letter-spacing: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🔥 バズタイトルクッカー <span class="premium-badge">PRO</span></h1>
+        <p class="subtitle">YouTube 14万人が実践する「勝ち筋」のタイトルを量産するプロ仕様ツール</p>
+
+        <div class="input-group">
+            <div class="flex-row">
+                <div class="flex-1">
+                    <label for="dishName">🔪 料理名・メインの食材（必須）</label>
+                    <input type="text" id="dishName" placeholder="例：豚バラ大根、鶏肉の唐揚げ" required
+                        onkeypress="handleEnter(event)">
+                </div>
+                <div class="flex-1">
+                    <label for="includeWord">➕ その次に含めたいキーワード <span
+                            style="font-size: 0.8em; color: #888; font-weight: normal;">(任意)</span></label>
+                    <input type="text" id="includeWord" placeholder="例：キャベツ、チーズ、絶品タレ" onkeypress="handleEnter(event)">
+                </div>
+            </div>
+            <div class="hint">キーワードを入力すると、「おいしい肉じゃがの作り方、家族が絶賛」のようにタイトルの文末に自然な形で追加されます。</div>
+        </div>
+
+        <div class="input-group">
+            <div class="flex-row">
+                <div class="flex-1">
+                    <label>💡 アピールポイント <span
+                            style="font-size: 0.8em; color: #888; font-weight: normal;">(任意)</span></label>
+                    <input type="text" id="hookWord" placeholder="例：レンジで5分、激安">
+                    <div class="buzzword-palette">
+                        <span class="buzzword-tag" onclick="insertWord('hookWord', 'レンジ5分')">レンジ5分</span>
+                        <span class="buzzword-tag" onclick="insertWord('hookWord', '包丁レス')">包丁レス</span>
+                        <span class="buzzword-tag" onclick="insertWord('hookWord', '材料2つ')">材料2つ</span>
+                        <span class="buzzword-tag" onclick="insertWord('hookWord', '100円食')">100円食</span>
+                        <span class="buzzword-tag" onclick="insertWord('hookWord', '爆速')">爆速</span>
+                        <span class="buzzword-tag" onclick="insertWord('hookWord', '世界一簡単')">世界一簡単</span>
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <label>👥 ターゲット・悩み <span
+                            style="font-size: 0.8em; color: #888; font-weight: normal;">(任意)</span></label>
+                    <input type="text" id="targetAudience" placeholder="例：疲れた日、給料日前">
+                    <div class="buzzword-palette">
+                        <span class="buzzword-tag" onclick="insertWord('targetAudience', '疲れた日')">疲れた夜</span>
+                        <span class="buzzword-tag" onclick="insertWord('targetAudience', '給料日前')">金欠の日</span>
+                        <span class="buzzword-tag" onclick="insertWord('targetAudience', '子供が喜ぶ')">子供爆食</span>
+                        <span class="buzzword-tag" onclick="insertWord('targetAudience', '一人暮らし')">独身メシ</span>
+                        <span class="buzzword-tag" onclick="insertWord('targetAudience', '忙しい朝')">時短朝食</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hint">バズりやすい「フック」や「ターゲット」をパレットから選択できます。</div>
+        </div>
+
+        <div class="input-group">
+            <label>📏 タイトルの文字数制限</label>
+            <div class="flex-row">
+                <div>
+                    <input type="number" id="minLength" min="1" max="100" value="25"> 文字以上
+                </div>
+                <div>
+                    〜
+                </div>
+                <div>
+                    <input type="number" id="maxLength" min="1" max="100" value="35"> 文字以下
+                </div>
+            </div>
+            <div class="hint">スマホ視聴を想定する場合、25〜35文字以内がおすすめです。（指定範囲外のタイトルは非表示になります）</div>
+        </div>
+
+        <button class="generate-btn" onclick="generateTitles()">🔥 タイトルを生成する</button>
+
+        <div class="results-area" id="resultsArea">
+            <!-- 結果がここにJavaScriptで挿入されます -->
+        </div>
+    </div>
+
+    <div class="toast" id="toast">コピーしました！✨</div>
+
+    <!-- Mobile Preview Overlay -->
+    <div class="preview-overlay" id="previewOverlay" onclick="closePreview()">
+        <div class="mobile-mockup" onclick="event.stopPropagation()">
+            <div class="close-preview" onclick="closePreview()">&times;</div>
+            <div class="mock-video">📺</div>
+            <div class="mock-info">
+                <div class="mock-title" id="mockTitle">ここにタイトルが表示されます</div>
+                <div class="mock-meta">なべスタイル / Nabe Style<br>14万回視聴 • 2分前</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //Enterキーで生成
+        function handleEnter(e) {
+            if (e.key === 'Enter') {
+                generateTitles();
+            }
+        }
+
+        // カテゴリのメタデータ（アイコンと説明文用）
+        const categoryMeta = {
+            '【王道・食欲直撃】型': { id: 'king', icon: '👑', desc: 'サムネイルを見た瞬間に味が想像できて食べたくなるパターン' },
+            '【ギャップ・意外性】型': { id: 'gap', icon: '😲', desc: '「えっ？」と思わせて詳細を見たくさせるクリック誘導パターン' },
+            '【時短・ズボラ・コスパ】型': { id: 'lazy', icon: '⏱️', desc: '視聴者の「めんどくさい、お金がない」という悩みを解決するパターン' },
+            '【共感・解決】型': { id: 'empathy', icon: '💕', desc: '特定の悩みや状況に寄り添って、作ってあげるモチベーションを高める' }
+        };
+
+        // 内蔵辞書を返す
+        async function loadTemplatesFromMarkdown() {
+            {
+                // 内蔵辞書を使用
+                return {
+                    'king': {
+                        icon: '👑',
+                        name: '【王道・食欲直撃】型',
+                        desc: 'サムネイルを見た瞬間に味が想像できて食べたくなるパターン',
+                        patterns: [
+                            "【悪魔的ウマさ】{dish}はコレが一番！{hook}最高のおかず",
+                            "ご飯が秒で消える…！パンチ効きまくりの「{dish}」がヤバい",
+                            "なぜ今までやらなかったのか。{dish}を最高に美味しく食べる方法",
+                            "一口で飛ぶ。ガッツリいきたい日の絶品{dish}",
+                            "【白米泥棒】タレまで飲み干したい…究極の{dish}",
+                            "あの店の味を完全再現！家族が奪い合う{dish}の作り方",
+                            "【黄金比】この味付けで失敗ゼロ。最高に美味しい{dish}",
+                            "圧倒的な旨さに驚愕。リピート確実の極上{dish}レシピ",
+                            "箸が止まらない！家族全員ペロリと完食するスタミナ{dish}",
+                            "【プロ直伝】家にある調味料で本格的な{dish}を作るコツ",
+                            "一生作り続けたい。本当に美味しい究極の{dish}",
+                            "ご飯泥棒確定！旨味が爆発する至高の{dish}",
+                            "絶対に後悔させない。ガツンと旨い王道{dish}の作り方",
+                            "【保存版】これぞ決定版。みんな大好きな定番{dish}",
+                            "旨すぎて言葉が出ない。週末のご褒美に食べたい絶品{dish}",
+                            "一口で虜になる。ご飯３杯は余裕でいける最強{dish}",
+                            "【感動レベル】お店を超えた！絶対外さない最高の{dish}",
+                            "白米との相性100%。食欲を刺激する激ウマ{dish}",
+                            "ひと口食べたら最後。無限に食べられる悪魔の{dish}",
+                            "うますぎて奪い合い。家族が笑顔になる絶品{dish}",
+                            "【至高 of 至高】家でこれが食べられる幸せ。究極の{dish}",
+                            "旨味の暴力！ガッツリ食べたい時に最高の{dish}レシピ",
+                            "これぞ日本の宝。一口で心まで満たされる究極の{dish}",
+                            "【衝撃の旨さ】{dish}の概念が変わる。絶対食べてほしい",
+                            "甘辛いタレが絡んで絶品！ご飯のお供に最強の{dish}",
+                            "【秘伝】プロがこっそり教える、本当に美味しい{dish}",
+                            "週末に作りたい。家族が感動するレベルの極上{dish}",
+                            "旨味がギュッ！素材の味を最大限に引き出した{dish}",
+                            "【究極】これ以上の{dish}は存在しない。伝説のレシピ",
+                            "香りだけで白米がいける。香ばしさがたまらない{dish}",
+                            "家族全員がリピート希望！食卓の主役を飾る絶品{dish}",
+                            "【最高金賞】自分史上もっとも美味しくできた{dish}",
+                            "旨すぎて昇天…！自分へのご褒美に最高の{dish}",
+                            "【決定版】{dish}を作るなら、まずこの動画を見て。"
+                        ]
+                    },
+                    'gap': {
+                        icon: '😲',
+                        name: '【ギャップ・意外性】型',
+                        desc: '「えっ？」と思わせて詳細を見たくさせるクリック誘導パターン',
+                        patterns: [
+                            "炒める前に〇〇するだけ！？いつもの{dish}が劇的に変わる魔法",
+                            "マジで教えたくなかった…スーパーの食材が化ける{dish}の裏技",
+                            "【だまされたと思ってやってみて】１手間で{dish}がお店の味に！",
+                            "「え、それ入れるの？」普通に作るより100倍ウマい{dish}",
+                            "9割の人が間違っている。本当に正しい{dish}の作り方",
+                            "〇〇は捨てないで！嘘みたいにウマくなる{dish}の隠し味",
+                            "【常識が覆る】もう二度と前の作り方には戻れない{dish}",
+                            "高級店ですか？と聞かれる。ある調味料で作る{dish}の秘密",
+                            "【衝撃】今まで食べていた{dish}は何だったのか…",
+                            "誰も知らない。たった50円で{dish}を劇的に美味しくする方法",
+                            "【裏技】これを入れるだけで{dish}がプロの味に大化けする",
+                            "え、嘘でしょ!? {dish}を10倍美味しくする衝撃の隠し味",
+                            "実はコレ入れるとヤバい。誰も教えてくれない{dish}の作り方",
+                            "【超意外】まさかの組み合わせで{dish}が極上の味に大変身",
+                            "プロも実践？知らなきゃ損する{dish}のとっておきの秘密",
+                            "その作り方、損してます。本当に美味しい{dish}の裏ワザ",
+                            "【革命】これぞ究極の隠し味。{dish}が別次元の旨さに！",
+                            "スーパーの特売品が高級店の味に!?魔法の{dish}レシピ",
+                            "絶対にバレない。激安食材を最高級に変える{dish}の魔法",
+                            "【新常識】これを知ったらもう普通の{dish}には戻れない",
+                            "【禁断】やってはいけない作り方が実は一番ウマい{dish}",
+                            "まさかの〇〇抜き！？驚くほど濃厚になる秘密の{dish}",
+                            "料理下手でも大丈夫。ある工夫で{dish}が天才レベルに",
+                            "【閲覧注意】旨すぎて他のレシピが見れなくなる{dish}",
+                            "普通の{dish}に飽きた人へ。衝撃の味変テクニック公開",
+                            "【謎解き】なぜこの店は{dish}が旨いのか？正解はこれ",
+                            "誰も信じてくれないけど、〇〇だけで{dish}は旨くなる",
+                            "【神回】{dish}の基本を無視したら、奇跡の味が誕生",
+                            "一口食べれば魔法にかかる。秘密の調味料で作る{dish}",
+                            "【大発見】{dish}に〇〇を入れたら、革命が起きました",
+                            "秘密にしておきたかった。高級料亭の{dish}の隠し技",
+                            "【裏コマンド】ある順番で入れるだけで{dish}が昇天級に",
+                            "これを知るだけで、あなたの{dish}は一生負けなしです。"
+                        ]
+                    },
+                    'lazy': {
+                        icon: '⏱️',
+                        name: '【時短・ズボラ・コスパ】型',
+                        desc: '視聴者の「めんどくさい、お金がない」という悩みを解決するパターン',
+                        patterns: [
+                            "フライパン1つで完成！洗い物ゼロの絶品{dish}",
+                            "やる気1%でも作れる。爆速で完成する{dish}がウマすぎる",
+                            "仕事終わりのヘトヘトでも余裕。10分で作れる最強の{dish}",
+                            "【包丁レス】まな板も包丁もいりません。ズボラ専用{dish}",
+                            "電子レンジだけで完結！火を使わないのに本格的な{dish}",
+                            "買い物に行かなくても大丈夫。家にあるもので作る絶品{dish}",
+                            "安いのにおばけ級に旨い。節約のプロが教える{dish}",
+                            "【時短の極み】切って焼くだけ。世界一簡単な{dish}の正解",
+                            "【超ズボラ】帰宅後10分でいただきます！疲れた日の{dish}",
+                            "お金と時間を節約！神スパイスで作る激安＆激ウマ{dish}",
+                            "フライパンのまま食卓へ！洗い物激減の革命的{dish}",
+                            "給料日前はコレに限る。100円台で作れる大満足の{dish}",
+                            "レンジでチンするだけ！火を使わない猛烈に旨い{dish}",
+                            "やる気が出ない日はこれ。混ぜて焼くだけの即席{dish}",
+                            "まな板不要！ハサミで完結する超カンタン{dish}の作り方",
+                            "【神コスパ】安上がりなのに豪華見え！家族が喜ぶ{dish}",
+                            "ヘトヘトな夜の味方。包丁も火も使わない極上{dish}",
+                            "誰でも失敗しない！爆速10分で完成するお店級の{dish}",
+                            "【3分レシピ】お腹が空いたら迷わずコレ。即席{dish}",
+                            "限界まで手を抜いても旨い。罪悪感なしのズボラ{dish}",
+                            "冷蔵庫の余り物だけでOK！魔法のレンチン{dish}",
+                            "【放置で完成】火加減不要！勝手に美味しくなる{dish}",
+                            "洗い物をしたくない日の救世主。片付け一瞬の{dish}",
+                            "【節約神】もやしと{dish}だけで豪華なメインが完成！",
+                            "ワンパンで絶品パスタ風！{dish}が驚くほど簡単に。",
+                            "【忙しい人専用】5分仕込みで後は待つだけの極上{dish}",
+                            "カップ麺より早い!? パッと作れてガッツリ旨い{dish}",
+                            "食材1つだけでこの満足感。究極のシンプル{dish}",
+                            "【神時短】1分でも早く寝たい夜に送る、最短の{dish}",
+                            "ズボラでも褒められる。魔法のように簡単な{dish}の技",
+                            "もうキッチンに立ちたくない…。そんな時の救いの一皿。"
+                        ]
+                    },
+                    'empathy': {
+                        icon: '💕',
+                        name: '【共感・解決】型',
+                        desc: '特定の悩みや状況に寄り添って、作ってあげるモチベーションを高める',
+                        patterns: [
+                            "【{target}】野菜嫌いの子供が必ずおかわりする魔法の{dish}",
+                            "「今日のご飯なに？」に困ったらコレ！絶対に外さない{dish}",
+                            "彼女・彼氏の胃袋を完全に掴む。記念日にも使える{dish}",
+                            "【失敗知らず】料理初心者でも100%お店の味になる{dish}",
+                            "いつも味が決まらない…と悩む人へ。絶対に美味しくなる{dish}",
+                            "ダイエット中だけどガッツリ食べたい！罪悪感ゼロの{dish}",
+                            "おもてなしで絶対に褒められる。見栄え抜群の{dish}の作り方",
+                            "体調不良のときに染み渡る…。優しくて最高に美味しい{dish}",
+                            "お弁当にもぴったり！冷めても美味しいお役立ち{dish}",
+                            "週末の晩酌を最高にする。ビールが無限に進む{dish}",
+                            "【マンネリ打破】いつもの献立に飽きたらコレ！絶品{dish}",
+                            "魚が苦手な子供でもパクパク食べる！臭みのない魔法の{dish}",
+                            "「また作って！」の声が聞ける。家族で争奪戦になる{dish}",
+                            "栄養満点で風邪予防にも最適！心も体も温まる絶品{dish}",
+                            "料理が苦手なパパでも絶対失敗しない。週末の特製{dish}",
+                            "疲労回復に効果バツグン！スタミナ満点パワー{dish}",
+                            "夜食に食べても太りにくい!? 罪悪感なしのヘルシー{dish}",
+                            "固いお肉が嘘みたいに柔らかくなる！お年寄りも喜ぶ{dish}",
+                            "急なお客さんにも慌てない！パッと作れて豪華な{dish}",
+                            "食欲がない日でもツルッと食べられる。さっぱり{dish}",
+                            "【離乳食にも】家族全員で食べられる、優しい味の{dish}",
+                            "「ママ、またこれ作って！」子供からのリクエストNo.1レシピ",
+                            "好き嫌いを克服！野菜たっぷりの{dish}を完食させる秘密",
+                            "【おうち居酒屋】ビールが進みすぎて困る！絶品{dish}",
+                            "おもてなしの主役！パーティーで絶対喜ばれる{dish}",
+                            "ダイエットの味方。低カロリーなのに大満足の{dish}",
+                            "忙しいママに捧ぐ。一皿で栄養満点の完璧な子供{dish}",
+                            "【解決】味が決まらない悩みを一発で解消する{dish}",
+                            "大切な人に作ってあげたい。愛が伝わる感動の{dish}",
+                            "冷めても美味しいからお弁当に最高！明日作りたくなる{dish}",
+                            "【初心者歓迎】計量いらず！感覚だけで作れる魔法の{dish}",
+                            "夏バテ気味の体に活力を。さっぱり×スタミンの極上{dish}",
+                            "独身時代の自分に教えたい。自炊が好きになる魔法の{dish}",
+                            "【時短＆栄養】野菜不足もこれ一つで。最強の親子{dish}",
+                            "週末の贅沢を家庭で。お店以上の満足感を得られる{dish}",
+                            "心まで温まる。おふくろの味を再現した究極の{dish}レシピ。"
+                        ]
+                    }
+                };
+            }
+        }
+
+        async function generateTitles() {
+            const dishInput = document.getElementById('dishName').value.trim();
+            const includeInput = document.getElementById('includeWord').value.trim();
+            const hookInput = document.getElementById('hookWord').value.trim();
+            const targetInput = document.getElementById('targetAudience').value.trim();
+
+            const minLength = parseInt(document.getElementById('minLength').value) || 1;
+            const maxLength = parseInt(document.getElementById('maxLength').value) || 100;
+
+            const resultsArea = document.getElementById('resultsArea');
+
+            if (!dishInput) {
+                alert("料理名は必須です！");
+                document.getElementById('dishName').focus();
+                return;
+            }
+
+            // デフォルト値の設定
+            const hook = hookInput ? hookInput : "箸が止まらない";
+            const target = targetInput ? targetInput : "疲れた日";
+            const dish = dishInput;
+
+            resultsArea.innerHTML = '';
+            let totalGenerated = 0;
+
+            // 内蔵辞書からタイトルを生成する
+            const templates = await loadTemplatesFromMarkdown();
+            if (!templates) return; // 読み込み失敗時は中断
+
+            // カテゴリー生成
+            for (const [key, category] of Object.entries(templates)) {
+                // パターンをランダムにシャッフル（すべてのパターンを使用する）
+                let shuffledPatterns = [...category.patterns].sort(() => 0.5 - Math.random());
+
+                // 全パターンを検証
+                let validTitles = [];
+
+                shuffledPatterns.forEach(pattern => {
+                    // 置換
+                    let resultTitle = pattern
+                        .replace(/{dish}/g, dish)
+                        .replace(/{hook}/g, hook)
+                        .replace(/{target}/g, target);
+
+                    // 不自然な表現を修正（例: 包丁いらず最高のおかず -> 包丁いらずで最高のおかず）
+                    resultTitle = resultTitle.replace(/無しの作り方/g, "無しの");
+
+                    // もし生成されたタイトルが料理名（例：肉じゃが）でぴったり終わる場合、「の作り方」を補って自然にする
+                    if (resultTitle.endsWith(dish)) {
+                        resultTitle += "の作り方";
+                    }
+
+                    // 付属キーワードがある場合、より自然な日本語になるようランダムなパターンで結合する
+                    if (includeInput) {
+                        const insertPatterns = [
+                            `【${includeInput}】${resultTitle}`,                   // 先頭にカッコでいれる
+                            `${resultTitle}（${includeInput}入り）`,               // 末尾にカッコ入れる
+                            `${resultTitle}。${includeInput}が決め手！`,           // 末尾に一言添える
+                            `${includeInput}を使って！${resultTitle}`,             // 先頭にアクションとして入れる
+                            `${resultTitle}〜${includeInput}アレンジ〜`             // アレンジ感を示す
+                        ];
+                        // ランダムに1つ選ぶ
+                        resultTitle = insertPatterns[Math.floor(Math.random() * insertPatterns.length)];
+                    }
+
+                    const charCount = resultTitle.length;
+
+                    // 文字数制限チェック
+                    // 「30文字以上」と指定されていても、25文字以上の優秀なタイトルは合格とする（厳しすぎると数が出なくなるため）
+                    const effectiveMinLength = Math.max(1, minLength - 5);
+
+                    if (charCount >= effectiveMinLength && charCount <= maxLength) {
+                        validTitles.push({ text: resultTitle, count: charCount });
+                    }
+                });
+
+                // 優先順位付け：指定された文字数（例：30文字）に近いものを優先的に上位に持ってくる
+                validTitles.sort((a, b) => {
+                    // 理想的な長さ（minLength）からの距離を計算（近いほどスコアが良い）
+                    const distA = Math.abs(a.count - minLength);
+                    const distB = Math.abs(b.count - minLength);
+                    return distA - distB;
+                });
+
+                // 条件に合うタイトルが1つでもあればブロックを描画
+                if (validTitles.length > 0) {
+                    // 表示するのは最大10件までに拡張
+                    const displayTitles = validTitles.slice(0, 10);
+                    // 見た目をランダムに戻す（短い順に並んでしまうのを防ぐため）
+                    displayTitles.sort(() => 0.5 - Math.random());
+
+                    totalGenerated += displayTitles.length;
+
+                    const block = document.createElement('div');
+                    block.className = 'category-block';
+
+                    const titleHtml = `
+                    <div class="category-title">
+                        <span>${category.icon} ${category.name}</span>
+                        <span class="result-count">${displayTitles.length}件生成</span>
+                    </div>
+                    <div style="font-size:0.85em; color:#aaa; margin-bottom:12px;">${category.desc}</div>
+                `;
+                    block.innerHTML = titleHtml;
+
+                    displayTitles.forEach(titleObj => {
+                        const item = document.createElement('div');
+                        item.className = 'title-item';
+
+                        // 文字数によって色付け（35文字以上はWarning色）
+                        const countClass = titleObj.count > 35 ? 'char-count warning' : 'char-count';
+
+                        item.innerHTML = `
+                        <div class="title-content">
+                            <div class="title-text">${titleObj.text}</div>
+                            <div class="title-meta">
+                                <span class="${countClass}">${titleObj.count}文字</span>
+                            </div>
+                        </div>
+                        <div class="btn-group">
+                            <button class="preview-btn" onclick="openPreview('${titleObj.text.replace(/'/g, "\\'")}')">📱 プレビュー</button>
+                            <button class="copy-btn" onclick="copyText(this)">コピー</button>
+                        </div>
+                    `;
+                        block.appendChild(item);
+                    });
+
+                    resultsArea.appendChild(block);
+                }
+            }
+
+            // 1件も生成されなかった場合
+            if (totalGenerated === 0) {
+                resultsArea.innerHTML = `
+                <div class="no-results">
+                    <h3>指定した文字数（${minLength}〜${maxLength}文字）の範囲に収まるタイトルが生成できませんでした。</h3>
+                    <p>文字数制限を広げるか、短めのキーワードを入力して再度お試しください。</p>
+                </div>
+            `;
+            } else {
+                // ハッシュタグ共通エリアの生成
+                const allTags = [
+                    '#絶品レシピ', '#男飯', '#最強メシ', '#バズレシピ', '#ガッツリ飯', '#ご飯泥棒',
+                    '#裏技レシピ', '#料理の裏技', '#簡単レシピ', '#意外な組み合わせ', '#魔法のレシピ',
+                    '#ズボラ飯', '#時短レシピ', '#簡単おつまみ', '#10分レシピ', '#レンチンレシピ', '#節約レシピ',
+                    '#おうちごはん', '#子供が喜ぶごはん', '#記念日ディナー', '#おうち居酒屋', '#褒められレシピ'
+                ];
+
+                // ランダムに5つ抽出
+                const shuffledTags = [...allTags].sort(() => 0.5 - Math.random());
+                const selectedTags = shuffledTags.slice(0, 5).join(' ');
+
+                // 料理名をハッシュタグ化して先頭に
+                const dishHashtag = '#' + dish.replace(/の/g, '').replace(/と/g, '');
+                const finalHashtags = `${dishHashtag} ${selectedTags}`;
+
+                const hashtagBlock = document.createElement('div');
+                hashtagBlock.className = 'category-block';
+                hashtagBlock.style.marginTop = '30px';
+                hashtagBlock.style.borderTop = '2px solid #333';
+
+                hashtagBlock.innerHTML = `
+                    <div class="category-title" style="color: #2979FF;">
+                        <span>#️⃣ 関連ハッシュタグ</span>
+                        <span style="font-size: 0.6em; background: rgba(41, 121, 255, 0.2); color: #2979FF; padding: 2px 8px; border-radius: 10px; margin-left: 10px;">概要欄用に！</span>
+                    </div>
+                    <div style="font-size:0.85em; color:#aaa; margin-bottom:12px;">すべての動画（ショート・横長）の概要欄にコピペして使えます。</div>
+                    <div class="title-item">
+                        <div class="title-content">
+                            <div class="title-text" style="color:#2979FF; font-weight:bold;">${finalHashtags}</div>
+                        </div>
+                        <button class="copy-btn" onclick="copyText(this)">コピー</button>
+                    </div>
+                `;
+                resultsArea.appendChild(hashtagBlock);
+            }
+
+            resultsArea.style.display = 'block';
+        }
+
+        // パレットから単語を挿入
+        function insertWord(inputId, word) {
+            const input = document.getElementById(inputId);
+            input.value = word;
+            input.focus();
+        }
+
+        // モバイルプレビュー
+        function openPreview(title) {
+            document.getElementById('mockTitle').innerText = title;
+            document.getElementById('previewOverlay').style.display = 'flex';
+        }
+
+        function closePreview() {
+            document.getElementById('previewOverlay').style.display = 'none';
+        }
+
+        function copyText(btnElement) {
+            // コピー対象のテキストを取得
+            const textToCopy = btnElement.previousElementSibling.querySelector('.title-text').innerText;
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = btnElement.innerText;
+                btnElement.innerText = 'コピー済!';
+                btnElement.classList.add('copied');
+
+                showToast();
+
+                setTimeout(() => {
+                    btnElement.innerText = originalText;
+                    btnElement.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                console.error('コピーに失敗しました', err);
+                prompt('以下のテキストをコピーしてください:', textToCopy);
+            });
+        }
+
+        let toastTimeout;
+        function showToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+    </script>
+
+</body>
+
+</html>
