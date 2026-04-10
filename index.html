@@ -37,6 +37,12 @@
             display: flex;
             justify-content: center;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body.locked {
+            overflow: hidden;
+            height: 100vh;
         }
 
         .container {
@@ -493,9 +499,75 @@
             margin-left: 10px;
             color: white;
             -webkit-text-fill-color: white;
-            /* Undo clip text */
             font-weight: 700;
             letter-spacing: 0;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 0;
+                display: block;
+                overflow-x: hidden;
+                width: 100%;
+            }
+
+            * {
+                box-sizing: border-box;
+                max-width: 100%;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 100%;
+                border-radius: 0;
+                padding: 20px 16px;
+                border: none;
+                box-shadow: none;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .flex-row {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .author-box {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .author-avatar {
+                margin: 0 auto;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .copy-btn, .preview-btn {
+                width: 100%;
+                padding: 12px;
+            }
+
+            .title-item {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            button.generate-btn {
+                font-size: 1.1em;
+                padding: 18px;
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
         }
     </style>
 </head>
@@ -503,8 +575,12 @@
 <body>
 
     <div class="container">
+        <div style="text-align:center;margin-bottom:16px;">
+            <img src="画像/バズタイトルクッカー画像.png" alt="バズタイトルクッカー" style="max-width:100%;height:auto;border-radius:16px;">
+        </div>
+
         <h1>🔥 バズタイトルクッカー <span class="premium-badge">PRO</span></h1>
-        <p class="subtitle">もうタイトル付けで悩むのはやめよう。</p>
+        <p class="subtitle"><em style="font-style:italic;background:linear-gradient(90deg,#fff 0%,#aaa 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:0.03em;white-space:nowrap;font-size:clamp(0.75em,3.5vw,1.1em);">— もうタイトル付けで、悩むのは終わり。</em></p>
 
         <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:24px 28px;margin-bottom:24px;line-height:1.9;color:#bbb;font-size:0.95em;">
             SNS動画において、<strong style="color:#fff;">タイトルはとにかく大事。</strong><br>
@@ -513,21 +589,23 @@
             料理名を入れるだけで、<strong style="color:#fff;">クリックされるタイトルが量産できます。</strong>
         </div>
 
-        <div style="background:rgba(255,61,0,0.08);border:1px solid rgba(255,61,0,0.3);border-radius:12px;padding:12px 18px;margin-bottom:20px;font-size:0.85em;color:#ffaa88;line-height:1.7;">
-            ⚠️ <strong>このツールは限定特典です。</strong><br>
-            外部へのシェア・転載はご遠慮ください。無断共有が発覚した場合は、正当な金額を請求させていただく場合があります。
-        </div>
-
-        <div class="author-box">
-            <div class="author-avatar">
-                <img src="画像/クック帽子.png" alt="なべ" style="width:52px;height:52px;border-radius:50%;object-fit:contain;background:#fff;padding:6px;">
-            </div>
-            <div class="author-info">
-                <span style="font-size:0.8em;color:#777;">このツールの制作者</span><br>
-                <strong>なべ　男飯料理研究家 兼 WEBマーケター</strong><br>
-                2019年より活動開始。YouTube登録者18万人・Instagram18万人・SNS総フォロワー50万人超。実際に伸びた動画のタイトルパターンをもとに本ツールを制作。<br><br>
-                <div style="text-align:center;margin-top:12px;">
-                    <a href="https://lit.link/nabekitchen" target="_blank" class="shine-btn">各種SNSはこちら →</a>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:20px 24px;margin-bottom:24px;">
+            <div style="font-size:1em;font-weight:700;color:#fff;margin-bottom:16px;">📖 使い方</div>
+            <div style="display:flex;flex-direction:column;gap:12px;font-size:0.9em;color:#bbb;line-height:1.7;">
+                <div>
+                    <span style="color:#FF6B35;font-weight:700;">① 料理名を入力する</span><br>
+                    今回撮影した料理の名前を入れるだけでOK。「豚バラ大根」「鶏の唐揚げ」など。
+                </div>
+                <div>
+                    <span style="color:#FF6B35;font-weight:700;">② タイトルを生成する</span><br>
+                    ボタンを押すと、私のこれまでの伸びたデータをもとにしたタイトル候補が複数出てきます。文字数は<strong style="color:#fff;">25〜35文字</strong>がベスト。
+                </div>
+                <div>
+                    <span style="color:#FF6B35;font-weight:700;">③ プレビューで確認する</span><br>
+                    各タイトルの「📱 プレビュー」ボタンを押すと、スマホでどう見えるか確認できます。
+                </div>
+                <div style="color:#888;font-size:0.85em;border-top:1px solid rgba(255,255,255,0.06);padding-top:12px;margin-top:4px;">
+                    💡 ここに出てきたものだけが正解ではありません。伸びるタイトルをベースに、自分なりにアレンジして使っていくのもおすすめです。
                 </div>
             </div>
         </div>
@@ -560,6 +638,27 @@
         <div class="results-area" id="resultsArea">
             <!-- 結果がここにJavaScriptで挿入されます -->
         </div>
+
+        <div class="author-box" style="margin-top:40px;">
+            <div class="author-avatar">
+                <img src="画像/クック帽子.png" alt="なべ" style="width:52px;height:52px;border-radius:50%;object-fit:contain;background:#fff;padding:6px;">
+            </div>
+            <div class="author-info">
+                <span style="font-size:0.8em;color:#777;">このツールの制作者</span><br>
+                <strong>なべ　男飯料理研究家 兼 WEBマーケター</strong><br>
+                2019年より活動開始。YouTube登録者18万人・Instagram18万人・SNS総フォロワー50万人超。実際に伸びた動画のタイトルパターンをもとに本ツールを制作。<br><br>
+                <div style="text-align:center;margin-top:12px;">
+                    <a href="https://lit.link/nabekitchen" target="_blank" class="shine-btn">各種SNSはこちら →</a>
+                </div>
+            </div>
+        </div>
+
+        <div style="background:rgba(255,61,0,0.08);border:1px solid rgba(255,61,0,0.3);border-radius:12px;padding:12px 18px;margin-top:20px;font-size:0.85em;color:#ffaa88;line-height:1.7;">
+            ⚠️ <strong>このツールは限定特典です。</strong><br>
+            外部へのシェア・転載はご遠慮ください。無断共有が発覚した場合は、正当な金額を請求させていただく場合があります。<br><br>
+            🐦 ツールの不具合・ご要望は <a href="https://twitter.com/nabeno_kitchen" target="_blank" style="color:#ffaa88;text-decoration:underline;">X（Twitter）のDM</a> までお気軽にどうぞ。
+        </div>
+
     </div>
 
     <div class="toast" id="toast">コピーしました！✨</div>
@@ -577,6 +676,7 @@
     </div>
 
     <script>
+
         //Enterキーで生成
         function handleEnter(e) {
             if (e.key === 'Enter') {
@@ -912,40 +1012,6 @@
             `;
             } else {
                 // ハッシュタグ共通エリアの生成
-                const allTags = [
-                    '#絶品レシピ', '#男飯', '#最強メシ', '#バズレシピ', '#ガッツリ飯', '#ご飯泥棒',
-                    '#裏技レシピ', '#料理の裏技', '#簡単レシピ', '#意外な組み合わせ', '#魔法のレシピ',
-                    '#ズボラ飯', '#時短レシピ', '#簡単おつまみ', '#10分レシピ', '#レンチンレシピ', '#節約レシピ',
-                    '#おうちごはん', '#子供が喜ぶごはん', '#記念日ディナー', '#おうち居酒屋', '#褒められレシピ'
-                ];
-
-                // ランダムに5つ抽出
-                const shuffledTags = [...allTags].sort(() => 0.5 - Math.random());
-                const selectedTags = shuffledTags.slice(0, 5).join(' ');
-
-                // 料理名をハッシュタグ化して先頭に
-                const dishHashtag = '#' + dish.replace(/の/g, '').replace(/と/g, '');
-                const finalHashtags = `${dishHashtag} ${selectedTags}`;
-
-                const hashtagBlock = document.createElement('div');
-                hashtagBlock.className = 'category-block';
-                hashtagBlock.style.marginTop = '30px';
-                hashtagBlock.style.borderTop = '2px solid #333';
-
-                hashtagBlock.innerHTML = `
-                    <div class="category-title" style="color: #2979FF;">
-                        <span>#️⃣ 関連ハッシュタグ</span>
-                        <span style="font-size: 0.6em; background: rgba(41, 121, 255, 0.2); color: #2979FF; padding: 2px 8px; border-radius: 10px; margin-left: 10px;">概要欄用に！</span>
-                    </div>
-                    <div style="font-size:0.85em; color:#aaa; margin-bottom:12px;">すべての動画（ショート・横長）の概要欄にコピペして使えます。</div>
-                    <div class="title-item">
-                        <div class="title-content">
-                            <div class="title-text" style="color:#2979FF; font-weight:bold;">${finalHashtags}</div>
-                        </div>
-                        <button class="copy-btn" onclick="copyText(this)">コピー</button>
-                    </div>
-                `;
-                resultsArea.appendChild(hashtagBlock);
             }
 
             resultsArea.style.display = 'block';
@@ -984,8 +1050,13 @@
         }
 
         let toastTimeout;
-        function showToast() {
+        function showToast(message) {
             const toast = document.getElementById('toast');
+            if (message) {
+                toast.innerText = message;
+            } else {
+                toast.innerText = 'コピーしました！✨';
+            }
             toast.classList.add('show');
 
             clearTimeout(toastTimeout);
