@@ -846,17 +846,25 @@
                         resultTitle += "の作り方";
                     }
 
-                    // 付属キーワードがある場合、より自然な日本語になるようランダムなパターンで結合する
-                    if (includeInput) {
-                        const insertPatterns = [
-                            `【${includeInput}】${resultTitle}`,                   // 先頭にカッコでいれる
-                            `${resultTitle}（${includeInput}入り）`,               // 末尾にカッコ入れる
-                            `${resultTitle}。${includeInput}が決め手！`,           // 末尾に一言添える
-                            `${includeInput}を使って！${resultTitle}`,             // 先頭にアクションとして入れる
-                            `${resultTitle}〜${includeInput}アレンジ〜`             // アレンジ感を示す
+                    // アピールポイント（hook）が入力されており、パターンに{hook}が含まれていなかった場合、自然に追加
+                    if (hookInput && !pattern.includes('{hook}')) {
+                        const hookInserts = [
+                            `【${hookInput}】${resultTitle}`,
+                            `${resultTitle}（${hookInput}）`,
+                            `${resultTitle}。${hookInput}で作れる！`,
+                            `${hookInput}で作る！${resultTitle}`,
                         ];
-                        // ランダムに1つ選ぶ
-                        resultTitle = insertPatterns[Math.floor(Math.random() * insertPatterns.length)];
+                        resultTitle = hookInserts[Math.floor(Math.random() * hookInserts.length)];
+                    }
+
+                    // ターゲット・悩み（target）が入力されており、パターンに{target}が含まれていなかった場合、自然に追加
+                    if (targetInput && !pattern.includes('{target}')) {
+                        const targetInserts = [
+                            `【${targetInput}に】${resultTitle}`,
+                            `${resultTitle}〜${targetInput}の方へ〜`,
+                            `${targetInput}必見！${resultTitle}`,
+                        ];
+                        resultTitle = targetInserts[Math.floor(Math.random() * targetInserts.length)];
                     }
 
                     const charCount = resultTitle.length;
