@@ -104,6 +104,38 @@
             font-size: 1em;
         }
 
+        .shine-btn {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            background: var(--primary-gradient);
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 20px;
+            font-size: 1em;
+            font-weight: 700;
+            text-align: center;
+            transition: filter 0.3s;
+        }
+
+        .shine-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.5) 50%, transparent 100%);
+            animation: shine 2.5s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -75%; }
+            60% { left: 125%; }
+            100% { left: 125%; }
+        }
+
         .input-group {
             margin-bottom: 24px;
             background: var(--card-bg);
@@ -495,7 +527,7 @@
                 <strong>なべ　男飯料理研究家 兼 WEBマーケター</strong><br>
                 2019年より活動開始。YouTube登録者18万人・Instagram18万人・SNS総フォロワー50万人超。実際に伸びた動画のタイトルパターンをもとに本ツールを制作。<br><br>
                 <div style="text-align:center;margin-top:12px;">
-                    <a href="https://lit.link/nabekitchen" target="_blank" style="display:block;background:var(--primary-gradient);color:#fff;text-decoration:none;padding:14px 20px;border-radius:20px;font-size:1em;font-weight:700;text-align:center;">各種SNSはこちら →</a>
+                    <a href="https://lit.link/nabekitchen" target="_blank" class="shine-btn">各種SNSはこちら →</a>
                 </div>
             </div>
         </div>
