@@ -540,37 +540,6 @@
         </div>
 
         <div class="input-group">
-            <div class="flex-row">
-                <div class="flex-1">
-                    <label>💡 アピールポイント <span
-                            style="font-size: 0.8em; color: #888; font-weight: normal;">(任意)</span></label>
-                    <input type="text" id="hookWord" placeholder="例：レンジで5分、激安">
-                    <div class="buzzword-palette">
-                        <span class="buzzword-tag" onclick="insertWord('hookWord', 'レンジ5分')">レンジ5分</span>
-                        <span class="buzzword-tag" onclick="insertWord('hookWord', '包丁レス')">包丁レス</span>
-                        <span class="buzzword-tag" onclick="insertWord('hookWord', '材料2つ')">材料2つ</span>
-                        <span class="buzzword-tag" onclick="insertWord('hookWord', '100円食')">100円食</span>
-                        <span class="buzzword-tag" onclick="insertWord('hookWord', '爆速')">爆速</span>
-                        <span class="buzzword-tag" onclick="insertWord('hookWord', '世界一簡単')">世界一簡単</span>
-                    </div>
-                </div>
-                <div class="flex-1">
-                    <label>👥 ターゲット・悩み <span
-                            style="font-size: 0.8em; color: #888; font-weight: normal;">(任意)</span></label>
-                    <input type="text" id="targetAudience" placeholder="例：疲れた日、給料日前">
-                    <div class="buzzword-palette">
-                        <span class="buzzword-tag" onclick="insertWord('targetAudience', '疲れた日')">疲れた夜</span>
-                        <span class="buzzword-tag" onclick="insertWord('targetAudience', '給料日前')">金欠の日</span>
-                        <span class="buzzword-tag" onclick="insertWord('targetAudience', '子供が喜ぶ')">子供爆食</span>
-                        <span class="buzzword-tag" onclick="insertWord('targetAudience', '一人暮らし')">独身メシ</span>
-                        <span class="buzzword-tag" onclick="insertWord('targetAudience', '忙しい朝')">時短朝食</span>
-                    </div>
-                </div>
-            </div>
-            <div class="hint">バズりやすい「フック」や「ターゲット」をパレットから選択できます。</div>
-        </div>
-
-        <div class="input-group">
             <label>📏 タイトルの文字数制限</label>
             <div class="flex-row">
                 <div>
@@ -797,8 +766,8 @@
         async function generateTitles() {
             const dishInput = document.getElementById('dishName').value.trim();
             const includeInput = '';
-            const hookInput = document.getElementById('hookWord').value.trim();
-            const targetInput = document.getElementById('targetAudience').value.trim();
+            const hookInput = '';
+            const targetInput = '';
 
             const minLength = parseInt(document.getElementById('minLength').value) || 1;
             const maxLength = parseInt(document.getElementById('maxLength').value) || 100;
@@ -983,12 +952,6 @@
         }
 
         // パレットから単語を挿入
-        function insertWord(inputId, word) {
-            const input = document.getElementById(inputId);
-            input.value = word;
-            input.focus();
-        }
-
         // モバイルプレビュー
         function openPreview(title) {
             document.getElementById('mockTitle').innerText = title;
