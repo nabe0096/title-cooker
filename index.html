@@ -447,13 +447,7 @@
                     <input type="text" id="dishName" placeholder="例：豚バラ大根、鶏肉の唐揚げ" required
                         onkeypress="handleEnter(event)">
                 </div>
-                <div class="flex-1">
-                    <label for="includeWord">➕ その次に含めたいキーワード <span
-                            style="font-size: 0.8em; color: #888; font-weight: normal;">(任意)</span></label>
-                    <input type="text" id="includeWord" placeholder="例：キャベツ、チーズ、絶品タレ" onkeypress="handleEnter(event)">
-                </div>
             </div>
-            <div class="hint">キーワードを入力すると、「おいしい肉じゃがの作り方、家族が絶賛」のようにタイトルの文末に自然な形で追加されます。</div>
         </div>
 
         <div class="input-group">
@@ -713,7 +707,7 @@
 
         async function generateTitles() {
             const dishInput = document.getElementById('dishName').value.trim();
-            const includeInput = document.getElementById('includeWord').value.trim();
+            const includeInput = '';
             const hookInput = document.getElementById('hookWord').value.trim();
             const targetInput = document.getElementById('targetAudience').value.trim();
 
